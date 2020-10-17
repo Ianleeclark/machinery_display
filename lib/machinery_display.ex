@@ -15,7 +15,7 @@ defmodule MachineryDisplay do
       {:ok, modules} ->
         modules
         |> Enum.filter(fn x ->
-          Kernel.function_exported?(x, :_machinery_states, 0)
+          x.__info__(:functions) |> Enum.member?({:_machinery_states, 0})
         end)
         |> Enum.flat_map(&generate_for_module/1)
 
