@@ -1,6 +1,8 @@
 defmodule MachineryDisplayTest do
   use ExUnit.Case
 
+  alias MachineryDisplay
+
   defmodule MachineryDisplay.TestStateMachine do
     use Machinery,
       field: :state,

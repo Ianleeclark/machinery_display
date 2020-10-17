@@ -17,7 +17,7 @@ defmodule MachineryDisplay do
         |> Enum.filter(fn x ->
           Kernel.function_exported?(x, :_machinery_states, 0)
         end)
-        |> Enum.map(&generate_for_module/1)
+        |> Enum.flat_map(&generate_for_module/1)
 
       _ ->
         {:error, :no_state_machines_found}
