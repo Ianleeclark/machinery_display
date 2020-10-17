@@ -7,7 +7,9 @@ defmodule MachineryDisplay.MixProject do
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      # Make sure that test commands always run in `:test`
+      preferred_cli_env: [testall: :test, test: :test]
     ]
   end
 

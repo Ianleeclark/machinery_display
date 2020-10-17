@@ -1,6 +1,5 @@
 defmodule MachineryDisplayTest do
   use ExUnit.Case
-  doctest MachineryDisplay
 
   defmodule MachineryDisplay.TestStateMachine do
     use Machinery,
@@ -11,9 +10,5 @@ defmodule MachineryDisplayTest do
         "middle" => ["complete"],
         "complete" => "initial"
       }
-  end
-
-  test "greets the world" do
-    assert MachineryDisplay.hello() == :world
   end
 end
