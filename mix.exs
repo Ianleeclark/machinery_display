@@ -19,7 +19,7 @@ defmodule MachineryDisplay.MixProject do
 
   defp deps do
     [
-      {:machinery, "~> 1.0.0"}
+      {:machinery, ">= 1.0.0"}
     ]
   end
 end

@@ -2,7 +2,7 @@ defmodule MachineryDisplayTest do
   use ExUnit.Case
   doctest MachineryDisplay
 
-  defmodule TestStateMachine do
+  defmodule MachineryDisplay.TestStateMachine do
     use Machinery,
       field: :state,
       states: ["initial", "middle", "complete"],
