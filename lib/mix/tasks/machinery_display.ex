@@ -21,8 +21,10 @@ defmodule Mix.Tasks.MachineryDisplay do
 
   def run([application]) when is_binary(application) do
     application_atom = String.to_atom(application)
-    with :ok <- :application.load(application_atom) do
-      MachineryDisplay.generate_all_outputs(application_atom)
+    case :application.load(application_atom) do
+      :ok ->
+        MachineryDisplay.generate_all_outputs(application_atom)
+      error -> error
     end
   end
 end
