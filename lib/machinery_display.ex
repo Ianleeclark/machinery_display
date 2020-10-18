@@ -66,9 +66,8 @@ defmodule MachineryDisplay do
 
   @spec compile_file(:dot | atom(), file_name :: String.t()) :: :ok | {:error, :compilation_error, map()}
   defp compile_file(:dot, file_name) do
-    with {"", 0} <- System.cmd("dot", ["-Tpng", file_name, "-o", String.replace(file_name, ".dot", ".png")]) do
-      :ok
-    else
+    case System.cmd("dot", ["-Tpng", file_name, "-o", String.replace(file_name, ".dot", ".png")]) do
+      {"", 0} -> :ok
       {msg, retval} -> {:error, :compilation_error, %{error_message: msg, retval: retval}}
     end
   end
