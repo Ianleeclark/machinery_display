@@ -8,9 +8,10 @@ defmodule Mix.Tasks.MachineryDisplay do
   def run([applications]) when is_list(applications) do
     application_atoms = applications |> Enum.map(&String.to_atom/1)
 
-    applications_loaded_okay? = application_atoms
-    |> Enum.map(fn x -> :application.load(x) end)
-    |> Enum.all?()
+    applications_loaded_okay? =
+      application_atoms
+      |> Enum.map(fn x -> :application.load(x) end)
+      |> Enum.all?()
 
     if not applications_loaded_okay? do
       System.stop(1)
@@ -21,10 +22,13 @@ defmodule Mix.Tasks.MachineryDisplay do
 
   def run([application]) when is_binary(application) do
     application_atom = String.to_atom(application)
+
     case :application.load(application_atom) do
       :ok ->
         MachineryDisplay.generate_all_outputs(application_atom)
-      error -> error
+
+      error ->
+        error
     end
   end
 end
