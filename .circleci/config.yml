@@ -49,7 +49,7 @@ jobs:
       - run: mix credo -a
 
 workflows:
-  all-tests:
+  build:
     jobs:
       - test:
           matrix:
