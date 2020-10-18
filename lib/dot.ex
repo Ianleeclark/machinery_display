@@ -7,7 +7,7 @@ defmodule MachineryDisplay.Dot do
   Converts a state machine module to a string representing the
   state machine.
   """
-  @spec create_output(state_machine :: Module.t()) :: String.t()
+  @spec create_output(state_machine :: module()) :: String.t()
   def create_output(state_machine), do: state_machine_to_dot(state_machine)
 
   @doc """
@@ -20,7 +20,7 @@ defmodule MachineryDisplay.Dot do
   # Private Functions #
   #####################
 
-  @spec state_machine_to_dot(state_machine :: Module.t()) :: String.t()
+  @spec state_machine_to_dot(state_machine :: module()) :: String.t()
   defp state_machine_to_dot(state_machine) do
     transitions =
       state_machine._machinery_transitions
