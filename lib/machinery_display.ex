@@ -55,6 +55,7 @@ defmodule MachineryDisplay do
   defp write_to_file(file_name, output) do
     root_dir = File.cwd!()
     output_file = Path.join(root_dir, file_name)
+
     case File.write(output_file, output) do
       :ok ->
         {:ok, output_file}
@@ -64,7 +65,8 @@ defmodule MachineryDisplay do
     end
   end
 
-  @spec compile_file(:dot | atom(), file_name :: String.t()) :: :ok | {:error, :compilation_error, map()}
+  @spec compile_file(:dot | atom(), file_name :: String.t()) ::
+          :ok | {:error, :compilation_error, map()}
   defp compile_file(:dot, file_name) do
     case System.cmd("dot", ["-Tpng", file_name, "-o", String.replace(file_name, ".dot", ".png")]) do
       {"", 0} -> :ok

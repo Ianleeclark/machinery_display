@@ -33,7 +33,7 @@ defmodule MachineryDisplay.MixProject do
       {:machinery, ">= 1.0.0"},
       # Non-core dependencies
       {:ex_doc, "~> 0.19", only: [:dev, :test], runtime: false},
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 

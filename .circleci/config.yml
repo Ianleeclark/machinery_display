@@ -41,3 +41,4 @@ jobs:
 
       - run: mix test
       - run: mix credo -a
+      - run: mix format --check-formatted

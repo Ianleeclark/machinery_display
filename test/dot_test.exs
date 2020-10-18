@@ -25,17 +25,19 @@ defmodule MachineryDisplay.DotTest do
 
   describe "create_output/1" do
     test "Handles cyclic graphs" do
-      assert Dot.create_output(MachineryDisplay.CyclicStateMachine) == "digraph X { complete -> initial;initial -> middle;initial -> complete;middle -> complete; }"
+      assert Dot.create_output(MachineryDisplay.CyclicStateMachine) ==
+               "digraph X { complete -> initial;initial -> middle;initial -> complete;middle -> complete; }"
     end
 
     test "Handles acyclic graphs" do
-      assert Dot.create_output(MachineryDisplay.AcyclicStateMachine) == "digraph X { initial -> middle;initial -> complete;middle -> complete; }"
+      assert Dot.create_output(MachineryDisplay.AcyclicStateMachine) ==
+               "digraph X { initial -> middle;initial -> complete;middle -> complete; }"
     end
   end
 
   describe "file_extension/0" do
     test "Smoke test to ensure it returns `dot`" do
-      assert Dot.file_extension == "dot"
+      assert Dot.file_extension() == "dot"
     end
   end
 end
