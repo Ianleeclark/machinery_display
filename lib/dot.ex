@@ -13,7 +13,7 @@ defmodule MachineryDisplay.Dot do
   @doc """
   Helper function to provide the extension
   """
-  @spec file_extension :: "dot"
+  @spec file_extension :: String.t()
   def file_extension, do: "dot"
 
   #####################

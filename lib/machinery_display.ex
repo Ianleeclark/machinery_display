@@ -34,9 +34,9 @@ defmodule MachineryDisplay do
     module
     |> generate_outputs()
     |> Enum.map(fn {type, output} ->
-      file_name = "#{module.__info__(:module)}.#{file_extension_for_output_type(type)}"
-
-      with {:ok, file_path} <- write_to_file(file_name, output),
+      with file_extension <- file_extension_for_output_type(type),
+           file_name <- "#{module.__info__(:module)}.#{file_extension}",
+           {:ok, file_path} <- write_to_file(file_name, output),
            :ok <- compile_file(type, file_path) do
         :ok
       end
@@ -78,14 +78,15 @@ defmodule MachineryDisplay do
     end
   end
 
-  defp compile_file(type, file_name) do
+  defp compile_file(_type, _file_name) do
     {:error, :unsupported_file_type}
   end
 
-  @spec file_extension_for_output_type(type :: atom()) :: Strimg.t()
+  @spec file_extension_for_output_type(type :: atom()) :: String.t() | {:error, :invalid_type}
   defp file_extension_for_output_type(type) do
     case type do
       :dot -> Dot.file_extension()
+      _ -> {:error, :invalid_type}
     end
   end
 end

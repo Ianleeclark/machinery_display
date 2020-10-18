@@ -12,7 +12,8 @@ defmodule MachineryDisplay.MixProject do
       package: package(),
       aliases: aliases(),
       # Make sure that test commands always run in `:test`
-      preferred_cli_env: [testall: :test, test: :test]
+      preferred_cli_env: [testall: :test, test: :test],
+      elixirc_options: [warnings_as_errors: true]
     ]
   end
 
