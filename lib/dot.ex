@@ -3,9 +3,17 @@ defmodule MachineryDisplay.Dot do
   A graphviz setup for displaying Machinery states.
   """
 
+  @doc """
+  Converts a state machine module to a string representing the
+  state machine.
+  """
   @spec create_output(state_machine :: Module.t()) :: String.t()
   def create_output(state_machine), do: state_machine_to_dot(state_machine)
 
+  @doc """
+  Helper function to provide the extension
+  """
+  @spec file_extension :: String.t()
   def file_extension, do: "dot"
 
   #####################
