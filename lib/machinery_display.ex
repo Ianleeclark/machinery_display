@@ -1,6 +1,8 @@
 defmodule MachineryDisplay do
   @moduledoc """
-  Documentation for MachineryDisplay.
+  Provides high-level ways to generate state machine graphics.
+
+  See also the `machinery_display` task to generate from a CLI.
   """
 
   alias MachineryDisplay.Dot
@@ -47,6 +49,8 @@ defmodule MachineryDisplay do
 
   @spec generate_outputs(state_machine :: Module.t()) :: map()
   defp generate_outputs(state_machine) do
+    # If other output types (different from :dot) exist,
+    # this is where you'd add them.
     %{dot: Dot.create_output(state_machine)}
   end
 
