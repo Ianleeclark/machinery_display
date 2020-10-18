@@ -1,13 +1,14 @@
 # MachineryDisplay
 
 Turns [Machinery](https://github.com/joaomdmoura/machinery) state machines into
-easy-to-digest graphics from an easy-to-call mix task. As simple as `$ mix machinery_display <project_name>`
+easy-to-digest graphics from an easy-to-call mix task. 
 
-## Examples
-### Simple State Machine
+As simple as `$ mix machinery_display <project_name>`
+
+## Example
 
 ```elixir
-defmodule MachineryDisplay.SimpleTestStateMachine do
+defmodule Example.SimpleTestStateMachine do
     use Machinery,
       field: :state,
       states: ["initial", "middle", "complete"],
@@ -19,10 +20,9 @@ defmodule MachineryDisplay.SimpleTestStateMachine do
 end
 ```
 
-### Complex State Machine
+Turns into
 
-```elixir
-```
+![State Machine](./static/Elixir.MachineryDisplay.SimpleTestStateMachine.png)
 
 ## System-level Dependencies
 
