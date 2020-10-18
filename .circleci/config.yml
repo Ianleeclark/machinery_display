@@ -1,0 +1,59 @@
+version: 2.1
+
+executors:
+  linux:
+    docker:
+      - image: cimg/base:2020.01
+
+orbs:
+  elixir: pagerduty/elixir@0.0.7
+
+jobs:
+  build:
+    parameters:
+      elixir-version:
+        type: string
+      erlang-version:
+        type: string
+      os:
+        type: executor
+    executor: << parameters.os >>
+    steps:
+      - checkout
+
+      - run:
+          name: install asdf
+          command: |
+            [ ! -f ".tool-versions" ] && echo "file .tool-versions was not found" && exit 1
+            [ -d ~/.asdf-vm ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf-vm --branch <<parameters.asdf_version>>
+            echo 'source ~/.asdf-vm/asdf.sh' >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: install Elixir and Erlang via asdf
+          command: |
+            [[ ! -f .tool-versions ]] && echo "A .tool-versions file is required to run this orb." && exit 1
+
+            asdf plugin-add erlang <<parameters.asdf_erlang_repo>> || asdf plugin-update erlang
+            cd ~/.asdf/plugins/erlang && git checkout <<parameters.asdf_erlang_commit>> && cd -
+            asdf install erlang << parameters.erlang-version >>
+
+            asdf plugin-add elixir <<parameters.asdf_elixir_repo>> || asdf plugin-update elixir
+            cd ~/.asdf/plugins/elixir && git checkout <<parameters.asdf_elixir_commit>> && cd -
+            asdf install elixir << parameters.elixir-version >>
+
+            mix local.hex --force
+            mix local.rebar --force
+
+      - run: mix do deps.get --only test, compile --force
+      - run: mix test
+      - run: mix credo -a
+
+workflows:
+  all-tests:
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              os: [linux]
+              elixir-version: ["1.8", "11.9.0", "12.9.1", "13.9.0"]
+              erlang-version: ["23.1"]
