@@ -44,7 +44,7 @@ The package can be installed by adding `machinery_display` to your list of depen
 ```elixir
 def deps do
   [
-    {:machinery_display, "~> 0.1.0"}
+    {:machinery_display, "~> 0.2.0"}
   ]
 end
 ```

@@ -29,7 +29,7 @@ defmodule MachineryDisplay do
   @doc """
   Handles generating an output for a single state machine.
   """
-  @spec generate_for_module(module :: Module.t()) :: :ok | {:error, atom(), map()}
+  @spec generate_for_module(module :: module()) :: :ok | {:error, atom(), map()}
   def generate_for_module(module) do
     module
     |> generate_outputs()
@@ -47,7 +47,7 @@ defmodule MachineryDisplay do
   # Private Functions #
   #####################
 
-  @spec generate_outputs(state_machine :: Module.t()) :: map()
+  @spec generate_outputs(state_machine :: module()) :: map()
   defp generate_outputs(state_machine) do
     # If other output types (different from :dot) exist,
     # this is where you'd add them.
