@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version here
-      - image: circleci/elixir:1.8
+      - image: circleci/elixir:1.10
 
     steps:
       - checkout
